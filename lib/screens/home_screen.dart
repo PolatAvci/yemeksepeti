@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_app_bar.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -10,9 +12,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appbar(),
-      drawer: const Drawer(),
+    return const Scaffold(
+      appBar: CustomAppBar(),
+      drawer: Drawer(),
     );
   }
 

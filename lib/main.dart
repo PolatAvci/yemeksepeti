@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yemeksepeti/screens/homeScreen.dart';
+import 'package:yemeksepeti/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,11 +30,11 @@ class MyApp extends StatelessWidget {
 class AppTheme {
   static Color primaryColor = const Color(0xFFea004b);
   static Color appbarColor = Colors.white;
-  static double appbarFontsize = 24;
+  static double appbarFontsize = 15;
   static TextStyle appbarTextStyle = TextStyle(
     color: AppTheme.appbarColor,
     fontSize: AppTheme.appbarFontsize,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
   static String title = "Yemeksepeti";
 }
