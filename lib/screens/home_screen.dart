@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'custom_app_bar.dart';
+import 'package:yemeksepeti/components/food_card.dart';
+import '../components/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,12 +12,59 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      drawer: Drawer(),
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: Column(
+        children: [
+          SizedBox(
+              height: 200,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: FoodCard(
+                      image: Image.asset(Images.doner),
+                      price: "Minimum 90 TL",
+                      like: "+100",
+                      time: "20 dakika",
+                      title: "Döner",
+                    ),
+                  ),
+                  Expanded(
+                    child: FoodCard(
+                      image: Image.asset(Images.doner),
+                      price: "Minimum 90 TL",
+                      like: "+100",
+                      time: "20 dakika",
+                      title: "Döner",
+                    ),
+                  ),
+                  Expanded(
+                    child: FoodCard(
+                      image: Image.asset(Images.doner),
+                      price: "Minimum 90 TL",
+                      like: "+100",
+                      time: "20 dakika",
+                      title: "Döner",
+                    ),
+                  ),
+                ],
+              )),
+          SizedBox(
+            height: 200,
+            width: 200,
+            child: FoodCard(
+              image: Image.asset(Images.burger),
+              price: "Minimum 90 TL",
+              like: "+100",
+              time: "20 dakika",
+              title: "Burger",
+            ),
+          ),
+        ],
+      ),
     );
   }
-
+/*
   AppBar appbar() {
     return AppBar(
       title: const Text("Deneme"),
@@ -28,5 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ],
     );
-  }
+  }*/
+}
+
+class Images {
+  static String doner = "images/durum-et-doner_b.png";
+  static String burger = "images/burger.png";
 }
