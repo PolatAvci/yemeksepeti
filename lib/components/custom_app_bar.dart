@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     child: AppBarShoppingButton(),
                   ),
                 ]),
-                SizedBox(height: 40, child: Expanded(child: AppBarSearchBar()))
+                SizedBox(height: 40, child: AppBarSearchBar())
               ],
             ),
           )),

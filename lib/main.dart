@@ -35,6 +35,7 @@ class AppTheme {
   static Color searchBarHintColor = Colors.grey;
   static Color textColor = Colors.black;
   static Color textGrey = Colors.grey;
+  static double mainPadding = 10;
   static double fontsize15 = 15;
   static double fontsize16 = 16;
   static FontWeight fontWeightw400 = FontWeight.w400;

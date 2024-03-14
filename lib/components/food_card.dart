@@ -49,68 +49,64 @@ class _FoodCardState extends State<FoodCard> {
     return InkWell(
       onTap: () {},
       child: Padding(
-        padding: CardTheme.cardPadding,
+        padding: CustomCardTheme.cardPadding,
         child: Column(
           children: [
             Expanded(
                 child: Padding(
-              padding: CardTheme.imageBottomPadding,
+              padding: CustomCardTheme.imageBottomPadding,
               child: _image ?? const Text("Görüntülenemiyor"),
             )),
             Row(
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Text(
                     _title ?? "",
                     maxLines: 1,
-                    overflow: CardTheme.textOverflow,
+                    overflow: CustomCardTheme.textOverflow,
                     style: AppTheme.appbarTextStyle.copyWith(
                         color: AppTheme.textColor,
-                        fontSize: CardTheme.titleFontsize,
-                        fontWeight: CardTheme.titleFontWeight),
+                        fontSize: CustomCardTheme.titleFontsize,
+                        fontWeight: CustomCardTheme.titleFontWeight),
                   ),
                 ),
                 Expanded(
-                  flex: 1,
-                  child: Expanded(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: AppTheme.primaryColor,
-                          ),
-                          Expanded(
-                            child: Text(
-                              _like ?? "",
-                              overflow: CardTheme.textOverflow,
-                              maxLines: CardTheme.maxLine,
-                            ),
-                          ),
-                        ]),
-                  ),
+                  child:
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    Icon(
+                      Icons.star,
+                      color: AppTheme.primaryColor,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          _like ?? "",
+                          overflow: CustomCardTheme.textOverflow,
+                          maxLines: CustomCardTheme.maxLine,
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ],
             ),
             Row(children: [
-              Expanded(
-                child: Text(
-                  _price ?? "",
-                  maxLines: CardTheme.maxLine,
-                ),
+              Text(
+                _price ?? "",
+                maxLines: CustomCardTheme.maxLine,
               ),
             ]),
             Row(
               children: [
                 const Icon(Icons.access_time),
-                Expanded(
-                  child: Text(
-                    _time ?? "",
-                    overflow: CardTheme.textOverflow,
-                    maxLines: CardTheme.maxLine,
-                  ),
-                )
+                Text(
+                  _time ?? "",
+                  overflow: CustomCardTheme.textOverflow,
+                  maxLines: CustomCardTheme.maxLine,
+                ),
               ],
             )
           ],
@@ -120,9 +116,10 @@ class _FoodCardState extends State<FoodCard> {
   }
 }
 
-class CardTheme {
+class CustomCardTheme {
   static TextOverflow textOverflow = TextOverflow.ellipsis;
   static int maxLine = 1;
+  static int maxLine2 = 2;
   static double titleFontsize = 20;
   static FontWeight titleFontWeight = FontWeight.w500;
   static EdgeInsets imageBottomPadding = const EdgeInsets.only(bottom: 10);

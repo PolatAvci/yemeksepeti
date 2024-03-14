@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yemeksepeti/components/category_card.dart';
 import 'package:yemeksepeti/components/food_card.dart';
+import 'package:yemeksepeti/main.dart';
 import '../components/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,53 +16,64 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: Column(
-        children: [
-          SizedBox(
-              height: 200,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: FoodCard(
-                      image: Image.asset(Images.doner),
-                      price: "Minimum 90 TL",
-                      like: "+100",
-                      time: "20 dakika",
-                      title: "Döner",
-                    ),
-                  ),
-                  Expanded(
-                    child: FoodCard(
-                      image: Image.asset(Images.doner),
-                      price: "Minimum 90 TL",
-                      like: "+100",
-                      time: "20 dakika",
-                      title: "Döner",
-                    ),
-                  ),
-                  Expanded(
-                    child: FoodCard(
-                      image: Image.asset(Images.doner),
-                      price: "Minimum 90 TL",
-                      like: "+100",
-                      time: "20 dakika",
-                      title: "Döner",
-                    ),
-                  ),
-                ],
-              )),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.mainPadding),
+        child: ListView(children: [
+          Text(
+            "Popüler",
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
           SizedBox(
             height: 200,
-            width: 200,
-            child: FoodCard(
-              image: Image.asset(Images.burger),
-              price: "Minimum 90 TL",
-              like: "+100",
-              time: "20 dakika",
-              title: "Burger",
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 5,
+              itemBuilder: (context, index) => SizedBox(
+                width: 200,
+                child: FoodCard(
+                  image: Image.asset(Images.doner),
+                  price: "Minimum 90 TL",
+                  like: "+100",
+                  time: "20 dakika",
+                  title: "Döner",
+                ),
+              ),
             ),
           ),
-        ],
+          SizedBox(
+            height: 120,
+            child: Row(children: [
+              CategoryCard(
+                title: "Burger",
+                image: Image.asset(Images.burger),
+              ),
+              CategoryCard(
+                title: "Burger",
+                image: Image.asset(
+                  Images.burger,
+                ),
+              ),
+              CategoryCard(
+                title: "Burger mvdkv dvmskmbkl",
+                image: Image.asset(
+                  Images.burger,
+                ),
+              ),
+              CategoryCard(
+                title: "Burger mvdkv dvmskmbkl",
+                image: Image.asset(
+                  Images.burger,
+                ),
+              ),
+              CategoryCard(
+                title: "Burger mvdkv dvmskmbkl",
+                image: Image.asset(
+                  Images.burger,
+                ),
+              ),
+            ]),
+          ),
+        ]),
       ),
     );
   }
