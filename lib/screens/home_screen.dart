@@ -19,6 +19,48 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppTheme.mainPadding),
         child: ListView(children: [
+          Text("Mutfak", style: Theme.of(context).textTheme.headlineLarge),
+          SizedBox(
+            height: 200,
+            child: GridView.count(
+              crossAxisCount: 4,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+                CategoryCard(
+                  title: "Burger",
+                  image: Image.asset(Images.burger),
+                ),
+              ],
+            ),
+          ),
           Text(
             "Popüler",
             style: Theme.of(context).textTheme.headlineLarge,
@@ -92,6 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Images {
-  static String doner = "images/durum-et-doner_b.png";
+  static String doner = "images/doner.png";
   static String burger = "images/burger.png";
 }

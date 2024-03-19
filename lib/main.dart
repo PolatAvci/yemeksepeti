@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yemeksepeti/screens/home_screen.dart';
+import 'package:yemeksepeti/screens/login_with_email_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppTexts.title,
-      home: const HomeScreen(),
+      home: const LoginWithEmailScreen(),
       theme: ThemeData(
         primaryColor: AppTheme.primaryColor,
         appBarTheme: AppBarTheme(
@@ -35,6 +35,9 @@ class AppTheme {
   static Color searchBarHintColor = Colors.grey;
   static Color textColor = Colors.black;
   static Color textGrey = Colors.grey;
+  static Color loginAppBarColor = Colors.white;
+  static Color customContainerColor = const Color.fromARGB(255, 243, 243, 243);
+  static Color customContainerColor2 = Colors.white;
   static double mainPadding = 10;
   static double fontsize15 = 15;
   static double fontsize16 = 16;
