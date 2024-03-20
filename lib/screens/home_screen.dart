@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yemeksepeti/components/category_card.dart';
+import 'package:yemeksepeti/components/custom_drawer.dart';
 import 'package:yemeksepeti/components/food_card.dart';
 import 'package:yemeksepeti/main.dart';
 import '../components/custom_app_bar.dart';
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
+      drawer: const CustomDrawer(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppTheme.mainPadding),
         child: ListView(children: [

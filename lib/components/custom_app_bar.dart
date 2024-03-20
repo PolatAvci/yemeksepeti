@@ -51,7 +51,9 @@ class AppBarMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
         icon: Icon(
           Icons.menu,
           color: AppTheme.appbarTextColor,

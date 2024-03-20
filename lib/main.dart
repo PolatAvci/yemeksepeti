@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yemeksepeti/screens/home_screen.dart';
 import 'package:yemeksepeti/screens/login_with_email_screen.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppTexts.title,
-      home: const LoginWithEmailScreen(),
+      home: const HomeScreen(),
       theme: ThemeData(
         primaryColor: AppTheme.primaryColor,
         appBarTheme: AppBarTheme(
