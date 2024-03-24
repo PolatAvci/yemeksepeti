@@ -5,11 +5,12 @@ import 'package:yemeksepeti/screens/home_screen.dart';
 import 'package:yemeksepeti/auth_service.dart'; // AuthService'ı doğru şekilde dahil ettiğinizden emin olun
 
 class LoginWithPasswordScreen extends StatefulWidget {
-  const LoginWithPasswordScreen({Key? key, required this.email}) : super(key: key);
+  const LoginWithPasswordScreen({super.key, required this.email});
   final String email;
 
   @override
-  State<LoginWithPasswordScreen> createState() => _LoginWithPasswordScreenState();
+  State<LoginWithPasswordScreen> createState() =>
+      _LoginWithPasswordScreenState();
 }
 
 class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
@@ -56,13 +57,14 @@ class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
             const SizedBox(height: 10),
             RichText(
               text: TextSpan(
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 children: [
                   TextSpan(
                     text: widget.email,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const TextSpan(text: " adresinin şifresi ile giriş yapabilirsiniz."),
+                  const TextSpan(
+                      text: " adresinin şifresi ile giriş yapabilirsiniz."),
                 ],
               ),
             ),
@@ -82,11 +84,23 @@ class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
             Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: _inputText.isEmpty ? null : () => _signInWithEmail(widget.email, _inputText),
-                    child: const Text("Şifre ile giriş yap"),
-                  ),
-                ),
+                    child: FilledButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                _inputText.isEmpty
+                                    ? Colors.grey[400]
+                                    : AppTheme.primaryColor),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)))),
+                        onPressed: _inputText
+                                .isEmpty // E-posta geçerliyse devam et butonunu etkinleştir
+                            ? null
+                            : () => _signInWithEmail(widget.email, _inputText),
+                        child: const Text(
+                          "Devam et",
+                          style: TextStyle(color: Colors.white),
+                        ))),
               ],
             ),
           ],
@@ -103,16 +117,18 @@ class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomeScreen(),
+            builder: (context) => const HomeScreen(),
           ),
         );
       } else {
         // Handle unsuccessful sign-in
         ScaffoldMessenger.of(context).showSnackBar(
-           const SnackBar(
-                content: Text('Şifre yanlış. Lütfen tekrar deneyin.'),
-                duration: Duration(seconds: 2), // İsteğe bağlı: SnackBar'ın görüntülenme süresi
-           ),);
+          const SnackBar(
+            content: Text('Şifre yanlış. Lütfen tekrar deneyin.'),
+            duration: Duration(
+                seconds: 2), // İsteğe bağlı: SnackBar'ın görüntülenme süresi
+          ),
+        );
       }
     } catch (e) {
       // Handle sign-in errors

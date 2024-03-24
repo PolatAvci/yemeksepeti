@@ -20,20 +20,23 @@ class _LoginWithEmailScreenState extends State<LoginWithEmailScreen> {
     super.dispose();
     _email.dispose();
   }
+
   Widget _buildErrorText(bool isValid) {
     return isValid
-        ? SizedBox() // Geçerli ise boş bir container döndür
+        ? const SizedBox() // Geçerli ise boş bir container döndür
         : const Padding(
-      padding: EdgeInsets.only(top: 8.0),
-      child: Text(
-        'Geçerli bir e-posta adresi girin',
-        style: TextStyle(color: Colors.red),
-      ),
-    );
+            padding: EdgeInsets.only(top: 8.0),
+            child: Text(
+              'Geçerli bir e-posta adresi girin',
+              style: TextStyle(color: Colors.red),
+            ),
+          );
   }
+
   @override
   Widget build(BuildContext context) {
-    bool isEmailValid = _isValidEmail(_inputText); // E-postanın doğruluğunu kontrol et
+    bool isEmailValid =
+        _isValidEmail(_inputText); // E-postanın doğruluğunu kontrol et
 
     return Scaffold(
       appBar: AppBar(
@@ -43,32 +46,33 @@ class _LoginWithEmailScreenState extends State<LoginWithEmailScreen> {
             Icons.arrow_back,
             color: AppTheme.primaryColor,
           ),
-          onPressed: () {Navigator.pop(context);},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         actions: [
           Padding(
               padding: EdgeInsets.only(right: LoginAppBarTheme.actionsPadding),
               child: TextButton(
-                onPressed: _inputText.isEmpty
-                    ? null
-                    : () {
+                onPressed: isEmailValid
+                    ? () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => LoginWithPasswordScreen(
                                       email: _inputText,
                                     )));
-                      },
+                      }
+                    : null,
                 child: Text(
                   LoginAppBarTheme.continueText,
-
                   style: TextStyle(
-                    color: isEmailValid ? AppTheme.primaryColor : Colors.grey[400],
+                    color:
+                        isEmailValid ? AppTheme.primaryColor : Colors.grey[400],
                     fontWeight: AppTheme.fontWeightw600,
                   ),
                 ),
-              )
-          ),
+              )),
         ],
       ),
       body: Padding(
@@ -110,21 +114,24 @@ class _LoginWithEmailScreenState extends State<LoginWithEmailScreen> {
                   child: FilledButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              isEmailValid ? Colors.grey[400]
-                                  : AppTheme.primaryColor),
+                              isEmailValid
+                                  ? AppTheme.primaryColor
+                                  : Colors.grey[400]),
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)))),
-                      onPressed: isEmailValid // E-posta geçerliyse devam et butonunu etkinleştir
-                          ? () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          LoginWithPasswordScreen(
-                                            email: _inputText,
-                                          )));
-                            }:null,
+                      onPressed:
+                          isEmailValid // E-posta geçerliyse devam et butonunu etkinleştir
+                              ? () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              LoginWithPasswordScreen(
+                                                email: _inputText,
+                                              )));
+                                }
+                              : null,
                       child: const Text(
                         "Devam et",
                         style: TextStyle(color: Colors.white),
