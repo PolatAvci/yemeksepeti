@@ -50,7 +50,7 @@ class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
             Image.asset("images/email.png"),
             const SizedBox(height: 30),
             const Text(
-              "E-postanızla giriş yapın",
+              "E-postanızla giriş yapın.",
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
