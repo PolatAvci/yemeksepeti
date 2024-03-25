@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yemeksepeti/screens/home_screen.dart';
+import 'package:yemeksepeti/screens/restaurant_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppTexts.title,
-      home: const HomeScreen(),
+      home: const RestaurantPage(),
       theme: ThemeData(
         primaryColor: AppTheme.primaryColor,
         appBarTheme: AppBarTheme(
