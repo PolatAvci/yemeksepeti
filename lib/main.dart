@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:yemeksepeti/screens/home_screen.dart';
-import 'package:yemeksepeti/screens/login_with_email_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,8 +9,6 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AppTheme {
-  static Color primaryColor = const Color(0xFFea004b);
+  static Color primaryColor = const Color.fromRGBO(250, 0, 80, 1);
   static Color appbarTextColor = Colors.white;
   static Color searchBarHintColor = Colors.grey;
   static Color textColor = Colors.black;

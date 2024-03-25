@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:yemeksepeti/main.dart";
-import "package:yemeksepeti/screens/login_with_email_screen.dart";
+import "package:yemeksepeti/screens/login_page.dart";
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -31,8 +31,7 @@ class CustomDrawer extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginWithEmailScreen()));
+                            builder: (context) => const LoginPage()));
                   }),
             ),
           ),

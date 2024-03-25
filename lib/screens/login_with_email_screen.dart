@@ -101,6 +101,7 @@ class _LoginWithEmailScreenState extends State<LoginWithEmailScreen> {
               hint: "Email girin:",
               label: "E-posta",
               controller: _email,
+              keyboardType: TextInputType.emailAddress,
               onChanged: (text) {
                 setState(() {
                   _inputText = text;

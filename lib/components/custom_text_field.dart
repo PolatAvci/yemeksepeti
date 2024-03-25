@@ -6,10 +6,14 @@ class CustomTextField extends StatefulWidget {
       {super.key,
       required this.label,
       this.password = false,
-      required this.onChanged, required TextEditingController controller, required String hint});
+      this.keyboardType,
+      required this.onChanged,
+      required TextEditingController controller,
+      required String hint});
   final String label;
   final bool password;
   final Function(String) onChanged;
+  final TextInputType? keyboardType;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -22,6 +26,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       height: 60,
       child: TextField(
+        keyboardType: widget.keyboardType,
         decoration: InputDecoration(
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black)),
