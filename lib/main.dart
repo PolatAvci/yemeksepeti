@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:yemeksepeti/screens/home_screen.dart';
-import 'package:yemeksepeti/screens/login_with_email_screen.dart';
+import 'package:yemeksepeti/screens/restaurant_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppTexts.title,
-      home: const HomeScreen(),
+      home: const RestaurantPage(),
       theme: ThemeData(
         primaryColor: AppTheme.primaryColor,
         appBarTheme: AppBarTheme(
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
 }
 
 class AppTheme {
-  static Color primaryColor = const Color(0xFFea004b);
+  static Color primaryColor = const Color.fromRGBO(250, 0, 80, 1);
   static Color appbarTextColor = Colors.white;
   static Color searchBarHintColor = Colors.grey;
   static Color textColor = Colors.black;

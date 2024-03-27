@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17343842341",
+    "project_id": "yemeksepeticlone-a69d6",
+    "storage_bucket": "yemeksepeticlone-a69d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17343842341:android:96dc0df32e3941b6a257cc",
+        "android_client_info": {
+          "package_name": "com.example.yemeksepeti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxR2y2-KNtSkaz4lUqnXWolBQjNnW08bA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

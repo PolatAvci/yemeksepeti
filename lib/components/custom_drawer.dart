@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:yemeksepeti/main.dart";
+import "package:yemeksepeti/screens/login_page.dart";
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -20,14 +21,18 @@ class CustomDrawer extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: InkWell(
-                child: Text(
-                  'Giriş Yap / Hesap Oluştur',
-                  style: TextStyle(
-                      color: AppTheme.appbarTextColor,
-                      fontWeight: AppTheme.fontWeightw600),
-                ),
-                onTap: () {},
-              ),
+                  child: Text(
+                    'Giriş Yap / Hesap Oluştur',
+                    style: TextStyle(
+                        color: AppTheme.appbarTextColor,
+                        fontWeight: AppTheme.fontWeightw600),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
+                  }),
             ),
           ),
           ListTile(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yemeksepeti/components/custom_text_field.dart';
 import 'package:yemeksepeti/main.dart';
-import 'package:yemeksepeti/screens/login_with_email_screen.dart';
+import 'package:yemeksepeti/screens/home_screen.dart';
+import 'package:yemeksepeti/auth_service.dart'; // AuthService'ı doğru şekilde dahil ettiğinizden emin olun
 
 class LoginWithPasswordScreen extends StatefulWidget {
   const LoginWithPasswordScreen({super.key, required this.email});
@@ -14,6 +15,20 @@ class LoginWithPasswordScreen extends StatefulWidget {
 
 class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
   String _inputText = "";
+  late final AuthService _auth;
+  final _password = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _auth = AuthService();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _password.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,77 +36,103 @@ class _LoginWithPasswordScreenState extends State<LoginWithPasswordScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-            color: AppTheme.primaryColor,
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
+          color: AppTheme.primaryColor,
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(LoginAppBarTheme.mainPadding),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(LoginAppBarTheme.emailImage),
-            const SizedBox(
-              height: 30,
+            Image.asset("images/email.png"),
+            const SizedBox(height: 30),
+            const Text(
+              "E-postanızla giriş yapın.",
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
-            Text(
-              "E-postanızla giriş yapın",
-              style: TextStyle(
-                  fontSize: LoginAppBarTheme.titleFontsize,
-                  fontWeight: AppTheme.fontWeightw600),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(children: [
-              Flexible(
-                child: RichText(
-                    text: TextSpan(
-                        style: const TextStyle(color: Colors.black),
-                        children: [
-                      TextSpan(
-                          text: widget.email,
-                          style:
-                              TextStyle(fontWeight: AppTheme.fontWeightw600)),
-                      const TextSpan(
-                          text: " adresinin şifresi ile giriş yapabilirsiniz."),
-                    ])),
+            const SizedBox(height: 10),
+            RichText(
+              text: TextSpan(
+                style: const TextStyle(color: Colors.black),
+                children: [
+                  TextSpan(
+                    text: widget.email,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const TextSpan(
+                      text: " adresinin şifresi ile giriş yapabilirsiniz."),
+                ],
               ),
-            ]),
-            const SizedBox(
-              height: 20,
             ),
+            const SizedBox(height: 20),
             CustomTextField(
-                label: "Şifre",
-                password: true,
-                onChanged: (text) {
-                  setState(() {
-                    _inputText = text;
-                  });
-                }),
+              hint: "Şifrenizi girin:",
+              label: "Şifre",
+              controller: _password,
+              password: true,
+              onChanged: (text) {
+                setState(() {
+                  _inputText = text;
+                });
+              },
+            ),
             const Spacer(),
-            Row(children: [
-              Expanded(
-                  child: FilledButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              _inputText.isEmpty
-                                  ? Colors.grey[400]
-                                  : AppTheme.primaryColor),
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)))),
-                      onPressed: _inputText.isEmpty ? null : () {},
-                      child: const Text(
-                        "Şifre ile giriş yap",
-                        style: TextStyle(color: Colors.white),
-                      )))
-            ]),
+            Row(
+              children: [
+                Expanded(
+                    child: FilledButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                _inputText.isEmpty
+                                    ? Colors.grey[400]
+                                    : AppTheme.primaryColor),
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)))),
+                        onPressed: _inputText
+                                .isEmpty // E-posta geçerliyse devam et butonunu etkinleştir
+                            ? null
+                            : () => _signInWithEmail(widget.email, _inputText),
+                        child: const Text(
+                          "Devam et",
+                          style: TextStyle(color: Colors.white),
+                        ))),
+              ],
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _signInWithEmail(String email, String password) async {
+    try {
+      final user = await _auth.loginUserWithEmailAndPassword(email, password);
+      if (user != null) {
+        // Handle successful sign-in, navigate to appropriate screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+      } else {
+        // Handle unsuccessful sign-in
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Şifre yanlış. Lütfen tekrar deneyin.'),
+            duration: Duration(
+                seconds: 2), // İsteğe bağlı: SnackBar'ın görüntülenme süresi
+          ),
+        );
+      }
+    } catch (e) {
+      // Handle sign-in errors
+      print("Sign in with email error: $e");
+    }
   }
 }
